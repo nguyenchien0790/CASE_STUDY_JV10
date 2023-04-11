@@ -64,7 +64,7 @@ public class CategoryServiceIMPL implements ICategoryService{
     @Override
     public Category findByName(String name) {
         for (Category category : categoryList) {
-            if (category.getCategoryName() == name){
+            if (category.getCategoryName().equalsIgnoreCase(name)){
                 return category;
             }
         }

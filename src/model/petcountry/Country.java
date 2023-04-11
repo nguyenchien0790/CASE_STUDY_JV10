@@ -32,8 +32,6 @@ public class Country implements Serializable {
 
     @Override
     public String toString() {
-        return "Country { " +
-                "ID= " + id +
-                " - CountryName=" + countryName + " }";
+        return String.format("%5d. %-20s",id ,countryName);
     }
 }

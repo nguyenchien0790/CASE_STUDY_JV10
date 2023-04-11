@@ -39,7 +39,7 @@ public class UserServiceIMPL implements IUserService {
 
     @Override
     public void remote(int id) {
-        userList.remove(id);
+        userList.remove(findById(id));
         updateData();
     }
 
@@ -86,7 +86,7 @@ public class UserServiceIMPL implements IUserService {
     @Override
     public User findByName(String username) {
         for (User user:userList) {
-            if (user.getUsername().equals(username)){
+            if (user.getUsername().equalsIgnoreCase(username)){
                 return user;
             }
 
@@ -103,7 +103,22 @@ public class UserServiceIMPL implements IUserService {
     }
 
     @Override
-    public void serCurrentUser(User currentUser) {
+    public void saveCurrentUser(User currentUser) {
         new  Config<User>().write(PATH_USER_PRINCIPAL,currentUser);
+    }
+
+    @Override
+    public void changeRole(int id, Role role) {
+        Set<Role> roles = new HashSet<>();
+        roles.add(role);
+        findById(id).setRoles(roles);
+        updateData();
+    }
+
+    @Override
+    public void changeStatus(int id) {
+        User user = findById(id);
+        user.setStatus(!user.isStatus());
+        updateData();
     }
 }

@@ -32,8 +32,12 @@ public class Category implements Serializable {
 
     @Override
     public String toString() {
-        return "Category { " +
-                "ID = " + id +
-                " - CategoryName = " + categoryName + " }";
+        return String.format("%5d. %-20s",id ,categoryName);
+
+
+
+//        return "Category { " +
+//                "ID = " + id +
+//                " - CategoryName = " + categoryName + " }";
     }
 }

@@ -28,6 +28,14 @@ public class User implements Serializable {
         this.roles = roles;
     }
 
+    public User(int id, String newName, String newEmail, String password) {
+        this.id = id;
+        this.name = newName;
+        this.password = password;
+        this.email = newEmail;
+
+    }
+
     public RoleName getRoleNameOfUser(){
         for (Role role : roles){
             if (role.getRoleName() == RoleName.ADMIN) return  RoleName.ADMIN;
@@ -95,13 +103,9 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return  "List Users: "+
-                "ID=" + id +
-                " - Name=" + name  +
-                " - Username=" + username  +
-                " - Password=" + password +
-                " - Email=" + email +
-                " - Status=" + status +
-                " - Roles=" + roles ;
+        return  "    ID = " + id + "\n" +
+                "Name = " + name  + "             Username = " + username  +"\n"+
+                "Password = " + password + "         Email = " + email +"\n"+
+                "Status = " + (status ? "BLOCKED" : "NOT BLOCKED") + "     Roles = " + roles +"\n";
     }
 }

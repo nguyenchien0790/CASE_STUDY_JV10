@@ -1,14 +1,12 @@
 package view.petcountry;
 
 import config.Config;
-
 import cotroller.petcountry.CountryController;
 import model.petcountry.Country;
 
+import java.util.List;
 
 import static config.Color.*;
-
-import java.util.List;
 
 public class ViewCountry {
 
@@ -25,7 +23,7 @@ public class ViewCountry {
         System.out.println("|                     3. UPDATE COUNTRY                  |");
         System.out.println("|                     4. DELETE COUNTRY                  |");
         System.out.println("|                     5. SEARCH COUNTRY                  |");
-        System.out.println("|                     6. BACK                            |");
+        System.out.println("|                     0. BACK                            |");
         System.out.println("'--------------------------------------------------------'\n");
         switch (Config.getValidInteger()) {
             case 1:
@@ -43,8 +41,10 @@ public class ViewCountry {
             case 5:
                 searchCountry();
                 break;
-            case 6:
-                System.exit(0);
+            case 0:
+                return;
+            default:
+                System.out.println("Invalid choice : ");
         }
         menu();
     }
@@ -74,7 +74,6 @@ public class ViewCountry {
         }
         System.out.println(GREEN+"'--------------------------------------------------------'" + RESET);
         System.out.println(" ");
-        System.out.println(" ");
     }
     private void deleteCountry() {
         showListCountry();
@@ -93,8 +92,6 @@ public class ViewCountry {
         System.out.println(".--------------------------------------------------------.");
         System.out.println(GREEN + "|    Delete successfully!                                |" + RESET);
         System.out.println("'--------------------------------------------------------'\n");
-
-        System.out.println(" ");
         System.out.println(" ");
     }
 
@@ -130,8 +127,6 @@ public class ViewCountry {
         System.out.println(".--------------------------------------------------------.");
         System.out.println(GREEN + "|    Edit successfully                                   |" + RESET);
         System.out.println("'--------------------------------------------------------'\n");
-
-        System.out.println(" ");
         System.out.println(" ");
     }
 
@@ -154,22 +149,18 @@ public class ViewCountry {
 
         System.out.println(GREEN + "Create Country in list success !!!" + RESET);
         System.out.println(" ");
-        System.out.println(" ");
     }
 
     public void showListCountry() {
-        System.out.println("                      COUNTRY LIST                       ");
+        System.out.println(GREEN+"                      COUNTRY LIST                       ");
         System.out.println(".--------------------------------------------------------.");
-        System.out.println("|       ID       |               NAME                    |");
+        System.out.println("|"+WHITE+"       ID       |               NAME                    "+GREEN+"|");
         System.out.println("|--------------------------------------------------------|");
 
         for (Country country : countryList) {
             System.out.printf("|       %-9d|              %-25s|\n", country.getId(), country.getCountryName());
         }
-        System.out.println("'--------------------------------------------------------'");
-
-
-        System.out.println(" ");
+        System.out.println("'--------------------------------------------------------'"+RESET);
         System.out.println(" ");
     }
 

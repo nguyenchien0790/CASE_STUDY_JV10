@@ -65,7 +65,7 @@ public class CountryServiceIMPL implements ICountryService{
     @Override
     public Country findByName(String name) {
         for (Country country : countryList) {
-            if (country.getCountryName() == name){
+            if (country.getCountryName().equalsIgnoreCase(name)){
                 return country;
             }
         }

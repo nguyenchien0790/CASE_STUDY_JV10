@@ -70,7 +70,7 @@ public class PetServiceIMPL implements IPetService {
     @Override
     public Pet findByName(String name) {
         for (Pet pet: petList) {
-            if (pet.getPetName().equals(name)){
+            if (pet.getPetName().equalsIgnoreCase(name)){
                 return pet;
             }
         }

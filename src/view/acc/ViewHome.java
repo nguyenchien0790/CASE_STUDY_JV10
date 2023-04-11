@@ -1,24 +1,21 @@
-package view.role;
+package view.acc;
 
 import cotroller.user.UserController;
 import model.account.User;
-import view.role.ViewAdmin;
-import view.role.ViewPm;
-import view.role.ViewUser;
 
-public class ViewHome {
+public class ViewHome{
     UserController userController = new UserController();
     User currentUser = userController.getCurrentUser();
-    public ViewHome(){
+    public void menuLogin(){
         switch (currentUser.getRoleNameOfUser()) {
             case ADMIN:
-                new ViewAdmin();
+                new ViewRoleAdmin().menu();
                 break;
             case PM:
-                new ViewPm();
+                new ViewRolePm().menu();
                 break;
             case USER:
-                new ViewUser();
+                new ViewRoleUser().menu();
                 break;
 
         }

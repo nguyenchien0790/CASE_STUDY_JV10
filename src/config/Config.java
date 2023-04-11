@@ -20,7 +20,7 @@ public class Config<T> {
         ) {
             data = (T) ois.readObject();
         } catch (Exception e) {
-            System.out.println(RED+"        Read error!!!"+RESET);
+            System.out.println(RED+"        Read error !!!"+RESET);
         }
         return data;
     }
@@ -32,7 +32,7 @@ public class Config<T> {
         ) {
             oos.writeObject(data);
         } catch (Exception e) {
-            System.out.println(RED+"        Write error!!!"+RESET);
+            System.out.println(RED+"        Write error !!!"+RESET);
         }
     }
 

@@ -1,15 +1,12 @@
 package view.petcategory;
 
-import com.sun.org.apache.regexp.internal.RE;
 import config.Config;
 import cotroller.petcategory.CategoryController;
 import model.petcategory.Category;
-import model.petcountry.Country;
 
 import java.util.List;
 
 import static config.Color.*;
-import static config.Color.RESET;
 
 public class ViewCategory {
     CategoryController categoryController = new CategoryController();
@@ -25,7 +22,7 @@ public class ViewCategory {
         System.out.println("|                     3. UPDATE CATEGORY                 |");
         System.out.println("|                     4. DELETE CATEGORY                 |");
         System.out.println("|                     5. SEARCH CATEGORY                 |");
-        System.out.println("|                     6. BACK                            |");
+        System.out.println("|                     0. BACK                            |");
         System.out.println("'--------------------------------------------------------'\n");
         switch (Config.getValidInteger()){
             case 1:
@@ -43,13 +40,15 @@ public class ViewCategory {
             case 5:
                 searchCategory();
                 break;
-            case 6:
-                System.exit(0);
+            case 0:
+                return;
+            default:
+                System.out.println("Invalid choice : ");
         }
         menu();
     }
 
-    private void searchCategory() {
+    public void searchCategory() {
         System.out.println(".--------------------------------------------------------.");
         System.out.println("|    Enter Category's name to search :                   |");
         System.out.print("|    ");
@@ -59,24 +58,23 @@ public class ViewCategory {
 
         System.out.println(GREEN + "       Category list search with name : " + nameSearch);
         System.out.println(".--------------------------------------------------------.");
-        System.out.println("|       ID       |               NAME                    |");
-        System.out.println("|--------------------------------------------------------|"+RESET);
+        System.out.println("|"+WHITE+"       ID       |               NAME                    "+GREEN+"|");
+        System.out.println("|--------------------------------------------------------|");;
         for (Category category : categoryList) {
             if (category.getCategoryName().contains(nameSearch)) {
-                System.out.printf(GREEN+"|       %-9d|              %-25s|\n"+RESET, category.getId(), category.getCategoryName());
+                System.out.printf("|       %-9d|              %-25s|\n", category.getId(), category.getCategoryName());
                 checkName = true;
             }
         }
 
         if (!checkName){
-            System.out.println(GREEN+"|"+RED+"  Category not found !!!"+RESET);
+            System.out.println("|"+RED+"  Category not found !!!");
 
         }
         System.out.println(GREEN+"'--------------------------------------------------------'" + RESET);
         System.out.println(" ");
-        System.out.println(" ");
     }
-    private void deleteCategory() {
+    public void deleteCategory() {
         showListCategory();
         System.out.println(".--------------------------------------------------------.");
         System.out.println("|    Enter Category's id to delete                       |");
@@ -93,13 +91,11 @@ public class ViewCategory {
         System.out.println(".--------------------------------------------------------.");
         System.out.println(GREEN + "|    Delete successfully!                                |" + RESET);
         System.out.println("'--------------------------------------------------------'\n");
-
-        System.out.println(" ");
         System.out.println(" ");
     }
 
 
-    private void updateCategory() {
+    public void updateCategory() {
         showListCategory();
         System.out.println(".--------------------------------------------------------.");
         System.out.println("|    Enter Category's Id to edit                         |");
@@ -133,12 +129,10 @@ public class ViewCategory {
         System.out.println(".--------------------------------------------------------.");
         System.out.println(GREEN + "|    Edit successfully                                   |" + RESET);
         System.out.println("'--------------------------------------------------------'\n");
-
-        System.out.println(" ");
         System.out.println(" ");
     }
 
-    private void createCategory() {
+    public void createCategory() {
         //id
         int id = categoryController.getLastId();
         //name
@@ -157,22 +151,20 @@ public class ViewCategory {
 
         System.out.println(GREEN + "Create Category in list success !!!" + RESET);
         System.out.println(" ");
-        System.out.println(" ");
+
     }
 
     public void showListCategory() {
-        System.out.println("                      CATEGORY LIST                       ");
+        System.out.println(GREEN+"                      CATEGORY LIST                       ");
         System.out.println(".--------------------------------------------------------.");
-        System.out.println("|       ID       |               NAME                    |");
+        System.out.println("|"+WHITE+"       ID       |               NAME                    "+GREEN+"|");
         System.out.println("|--------------------------------------------------------|");
 
         for (Category category : categoryList) {
             System.out.printf("|       %-9d|              %-25s|\n", category.getId(), category.getCategoryName());
         }
-        System.out.println("'--------------------------------------------------------'");
-
-
+        System.out.println("'--------------------------------------------------------'"+RESET);
         System.out.println(" ");
-        System.out.println(" ");
+
     }
 }

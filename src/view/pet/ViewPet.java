@@ -31,7 +31,7 @@ public class ViewPet {
         System.out.println("|                     3. UPDATE PET                      |");
         System.out.println("|                     4. DELETE PET                      |");
         System.out.println("|                     5. SEARCH PET                      |");
-        System.out.println("|                     6. BACK                            |");
+        System.out.println("|                     0. BACK                            |");
         System.out.println("'--------------------------------------------------------'\n");
         switch (Config.getValidInteger()) {
             case 1:
@@ -49,13 +49,15 @@ public class ViewPet {
             case 5:
                 searchPet();
                 break;
-            case 6:
-                System.exit(0);
+            case 0:
+                return;
+            default:
+                System.out.println("Invalid choice : ");
         }
         menu();
     }
 
-    private void searchPet() {
+    public void searchPet() {
         System.out.print("     Enter Pet's name to search : ");
         String nameSearch = Config.scanner().nextLine();
         boolean checkName = false;
@@ -78,7 +80,7 @@ public class ViewPet {
         System.out.println(" ");
     }
 
-    private void deletePet() {
+    public void deletePet() {
         showListPet();
         System.out.println("     Enter Pet's id to delete                      ");
         int idDelete = Config.getValidInteger();
@@ -109,7 +111,7 @@ public class ViewPet {
         }
     }
 
-    private void updatePet() {
+    public void updatePet() {
         showListPet();
         System.out.println("    Enter Pet's Id to edit                              ");
         int idEdit = Config.getValidInteger();
@@ -142,6 +144,7 @@ public class ViewPet {
             }
         }
         //category
+        System.out.println("Enter number to choose CATEGORY:");
         for (int i = 0; i < CategoryServiceIMPL.categoryList.size(); i++) {
             System.out.println(i + 1 + ": " + CategoryServiceIMPL.categoryList.get(i).toString());
 
@@ -183,6 +186,7 @@ public class ViewPet {
         }
 
         // country
+        System.out.println("Enter number to choose COUNTRY:");
         for (int i = 0; i < CountryServiceIMPL.countryList.size(); i++) {
             System.out.println(i + 1 + ": " + CountryServiceIMPL.countryList.get(i).toString());
         }
@@ -207,7 +211,7 @@ public class ViewPet {
         System.out.println(" ");
     }
 
-    private void createPet() {
+    public void createPet() {
         //id
         int id = petController.getLastId();
 
@@ -234,8 +238,9 @@ public class ViewPet {
             }
         }
         //category
+        System.out.println("Enter number to choose CATEGORY:");
         for (int i = 0; i < CategoryServiceIMPL.categoryList.size(); i++) {
-            System.out.println(i + 1 + ": " + CategoryServiceIMPL.categoryList.get(i).toString());
+            System.out.println(CategoryServiceIMPL.categoryList.get(i).toString());
         }
         System.out.println("Input Id Category' Pet: ");
         int idCategory;
@@ -243,7 +248,7 @@ public class ViewPet {
         while (true){
             idCategory = Config.getValidInteger();
             if (idCategory>0 && idCategory<= CategoryServiceIMPL.categoryList.size()){
-                category =categoryController.findIdCategory(idCategory);
+                category = categoryController.findIdCategory(idCategory);
                 break;
             }
             System.out.println(RED + "Invalid ID, try again !!!" + RESET);
@@ -274,8 +279,9 @@ public class ViewPet {
         }
 
         // country
+        System.out.println("Enter number to choose COUNTRY:");
         for (int i = 0; i < CountryServiceIMPL.countryList.size(); i++) {
-            System.out.println(i + 1 + ": " + CountryServiceIMPL.countryList.get(i).toString());
+            System.out.println(CountryServiceIMPL.countryList.get(i).toString());
         }
         System.out.println("Input Id country' Pet: ");
         int idCountry;

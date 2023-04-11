@@ -1,21 +1,24 @@
 package cotroller.user;
-
 import dto.request.SignInDTO;
 import dto.request.SignUpDTO;
 import dto.response.ResponseMessenger;
 import model.account.Role;
 import model.account.RoleName;
 import model.account.User;
+import service.role.IRoleService;
 import service.role.RoleServiceIMPL;
 import service.user.IUserService;
 import service.user.UserServiceIMPL;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 public class UserController {
     IUserService userService = new UserServiceIMPL();
+    User currentUser = userService.getCurrentUser();
+    IRoleService roleService = new RoleServiceIMPL();
     public int getLastId(){
         return userService.getLastId();
     }
@@ -46,7 +49,7 @@ public class UserController {
             return new ResponseMessenger("blocked");
         }
 
-        userService.serCurrentUser(user);
+        userService.saveCurrentUser(user);
         return new ResponseMessenger("success");
     }
 
@@ -55,11 +58,63 @@ public class UserController {
     }
 
     public void  logout(){
-        userService.serCurrentUser(null);
+        userService.saveCurrentUser(null);
     }
 
     public List<User> displayDataUser(){
-        return userService.findAll();
+        List<User> userList = new ArrayList<>(userService.findAll());
+        userList.remove(0);
+        return userList;
+    }
+
+    public ResponseMessenger deleteUser(int id) {
+        if (userService.findById(id) == null || id == 0) {
+            return new ResponseMessenger("not_found");
+        }
+        userService.remote(id);
+        return new ResponseMessenger("success");
+    }
+
+    public ResponseMessenger changeRole(int id, String roleName) {
+        if (userService.findById(id) == null || id == 0) {
+            return new ResponseMessenger("not_found");
+        }
+        if (!roleName.equals("USER") && !roleName.equals("PM")) {
+            return new ResponseMessenger("invalid_role");
+        }
+        Role role = roleName.equals("USER") ? roleService.findByRoleName(RoleName.USER) : roleService.findByRoleName(RoleName.PM);
+        userService.changeRole(id, role);
+        return new ResponseMessenger("success");
 
     }
+
+    public ResponseMessenger blockUser(int id) {
+        if (userService.findById(id) == null || id == 0) {
+            return new ResponseMessenger("not_found");
+        }
+        userService.changeStatus(id);
+        boolean check = userService.findById(id).isStatus();
+        if (check) {
+            return new ResponseMessenger("blocked");
+        } else {
+            return new ResponseMessenger("unblocked");
+        }
+    }
+    public ResponseMessenger changePassword(String oldPassword, String newPassword) {
+        if (!oldPassword.equals(currentUser.getPassword())) {
+            return new ResponseMessenger("not_match");
+        }
+        currentUser.setPassword(newPassword);
+        userService.updateData();
+        return new ResponseMessenger("success");
+    }
+    public User detailUser(String username){
+        return userService.findByName(username);
+    }
+    public void editUser(String username, User newUser){
+        User user = userService.findByName(username);
+        user.setName(newUser.getName());
+        user.setEmail(newUser.getEmail());
+    }
+
 }
