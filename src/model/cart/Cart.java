@@ -16,6 +16,7 @@ public class Cart implements Serializable {
     public Cart(int id, int idUser) {
         this.id = id;
         this.idUser = idUser;
+        this.status = false;
     }
 
     public Cart(int id, int idUser, Map<Integer, Integer> cartMap, boolean status) {
@@ -55,6 +56,14 @@ public class Cart implements Serializable {
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    public void addToCart(int idPet) {
+        if (cartMap.containsKey(idPet)) {
+            cartMap.put(idPet, cartMap.get(idPet) + 1);
+        } else {
+            cartMap.put(idPet, 1);
+        }
     }
 
     @Override

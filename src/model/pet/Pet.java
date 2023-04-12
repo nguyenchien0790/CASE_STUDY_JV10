@@ -26,6 +26,9 @@ public class Pet implements Serializable {
         this.country = country;
     }
 
+    public Pet(int newAmount) {
+        this.amount = newAmount;
+    }
 
 
     public int getId() {
@@ -86,14 +89,7 @@ public class Pet implements Serializable {
 
     @Override
     public String toString() {
-        return "Pet { " +
-                "Id=" + id +
-                " - petName='" + petName +
-                " - color='" + color +
-                " - category=" + category +
-                " - price=" + price +
-                " - amount=" + amount +
-                " - country=" + country +
-                " }";
+        return String.format("      %-8d|     %-28s|         %-15s|       %-15s|     %-14.2f|    %-10d|         %-16s|\n",
+                getId(),getPetName(), getColor(), getCategory().getCategoryName(), getPrice(),getAmount(),getCountry().getCountryName());
     }
 }

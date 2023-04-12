@@ -7,7 +7,6 @@ import dto.request.SignUpDTO;
 import dto.response.ResponseMessenger;
 import model.account.User;
 import view.acc.ViewHome;
-import view.acc.ViewMyProfile;
 import view.pet.ViewPet;
 import view.petcategory.ViewCategory;
 
@@ -27,7 +26,7 @@ public class ViewMainMenu {
         System.out.println("|                      4. LIST CATEGORY                     |");
         System.out.println("|                      5. SEARCH PET                        |");
         System.out.println("|                      6. SEARCH CATEGORY                   |");
-        System.out.println("|                      7. SHOW USER LIST                    |");
+        System.out.println("|                      7. SORT PET BY PRICE                 |");
         System.out.println("|                      0. EXIT ☠ ☠ ☠ ☠️               |");
         System.out.println("'-----------------------------------------------------------'\n");
         switch (Config.getValidInteger()){
@@ -53,8 +52,9 @@ public class ViewMainMenu {
                 new ViewCategory().searchCategory();
                 break;
             case 7:
-                new ViewMyProfile().formShowListUser();
+                new ViewPet().sortPet();
                 break;
+
             case 0:
                 System.exit(0);
         }

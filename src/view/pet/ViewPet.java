@@ -13,7 +13,6 @@ import service.country.CountryServiceIMPL;
 import java.util.List;
 
 import static config.Color.*;
-import static config.Color.RESET;
 
 public class ViewPet {
     PetController petController = new PetController();
@@ -27,7 +26,7 @@ public class ViewPet {
         System.out.println("|                       PETS MANAGER                     |");
         System.out.println("|--------------------------------------------------------|");
         System.out.println("|                     1. SHOW LIST PETS                  |");
-        System.out.println("|                     2. ADD PET                         |");
+        System.out.println("|                     2. ADD PET                x        |");
         System.out.println("|                     3. UPDATE PET                      |");
         System.out.println("|                     4. DELETE PET                      |");
         System.out.println("|                     5. SEARCH PET                      |");
@@ -154,8 +153,8 @@ public class ViewPet {
         Category category;
         while (true){
             idCategory = Config.getValidInteger();
-            if (idCategory>0 && idCategory<= CategoryServiceIMPL.categoryList.size()){
-                category = categoryController.findIdCategory(idCategory);
+            category = categoryController.findIdCategory(idCategory);
+            if (category != null){
                 break;
             }
             System.out.println(RED + "Invalid ID, try again !!!" + RESET);
@@ -195,8 +194,8 @@ public class ViewPet {
         Country country;
         while (true){
             idCountry = Config.getValidInteger();
-            if (idCountry>0 && idCountry<= CountryServiceIMPL.countryList.size()){
-                country = countryController.findIDCountry(idCountry);
+            country = countryController.findIDCountry(idCountry);
+            if (country != null){
                 break;
             }
             System.out.println(RED + "Invalid ID, try again !!!" + RESET);
@@ -247,8 +246,8 @@ public class ViewPet {
         Category category;
         while (true){
             idCategory = Config.getValidInteger();
-            if (idCategory>0 && idCategory<= CategoryServiceIMPL.categoryList.size()){
-                category = categoryController.findIdCategory(idCategory);
+            category = categoryController.findIdCategory(idCategory);
+            if (category != null){
                 break;
             }
             System.out.println(RED + "Invalid ID, try again !!!" + RESET);
@@ -288,8 +287,8 @@ public class ViewPet {
         Country country;
         while (true){
             idCountry = Config.getValidInteger();
-            if (idCountry>0 && idCountry<= CountryServiceIMPL.countryList.size()){
-                country = countryController.findIDCountry(idCountry);
+            country = countryController.findIDCountry(idCountry);
+            if (country != null){
                 break;
             }
             System.out.println(RED + "Invalid ID, try again !!!" + RESET);
@@ -313,6 +312,17 @@ public class ViewPet {
             System.out.printf("|      %-8d|     %-28s|         %-15s|       %-15s|     %-14.2f|    %-10d|         %-16s|\n",
                     pet.getId(), pet.getPetName(), pet.getColor(), pet.getCategory().getCategoryName(), pet.getPrice(), pet.getAmount(), pet.getCountry().getCountryName());
         }
+        System.out.println("'-------------------------------------------------------------------------------------------------------------------------------------------------------------'\n" + RESET);
+
+    }
+
+    public void sortPet() {
+        petController.sortByPrice();
+        System.out.println("LIST PET SORT BY PRICE");
+        System.out.println(GREEN+".-------------------------------------------------------------------------------------------------------------------------------------------------------------.");
+        System.out.println("|"+WHITE+"      ID      |             NAME                |          COLOR         |       CATEGORY       |     PRICE(VND)    |    AMOUNT    |         COUNTRY         "+GREEN+"|");
+        System.out.println("|-------------------------------------------------------------------------------------------------------------------------------------------------------------|");
+        System.out.println(petController.showPetList());
         System.out.println("'-------------------------------------------------------------------------------------------------------------------------------------------------------------'\n" + RESET);
 
     }

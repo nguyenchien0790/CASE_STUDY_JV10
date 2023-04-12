@@ -18,7 +18,7 @@ public class ViewMyProfile {
         System.out.println("|                     MENU MY PROFILE                    |");
         System.out.println("|--------------------------------------------------------|");
         System.out.println("|                     1. DETAIL PROFILE                  |");
-        System.out.println("|                     2. CHANGE PROFILE USER             |");
+        System.out.println("|                     2. CHANGE PROFILE USER      X      |");
         System.out.println("|                     3. CHANGE PASSWORD                 |");
         System.out.println("|                     0. BACK                            |");
         System.out.println("'--------------------------------------------------------'\n");
@@ -45,7 +45,7 @@ public class ViewMyProfile {
         System.out.println("|                     MENU MY PROFILE                    |");
         System.out.println("|--------------------------------------------------------|");
         System.out.println("|                     1. DETAIL PROFILE                  |");
-        System.out.println("|                     2. CHANGE MY PROFILE               |");
+        System.out.println("|                     2. CHANGE MY PROFILE           X   |");
         System.out.println("|                     3. CHANGE PASSWORD                 |");
         System.out.println("|                     0. BACK                            |");
         System.out.println("'--------------------------------------------------------'\n");
@@ -68,6 +68,8 @@ public class ViewMyProfile {
     }
 
     private void formChangeMyProfile() {
+
+
     }
 
     public void formChangeAllProfile() {
@@ -89,7 +91,6 @@ public class ViewMyProfile {
                     System.out.println(RED+"Invalid name, try again !!!"+RESET);
                 }
             }
-
             System.out.println("OLD EMAIL: " + currentUser.getEmail());
             System.out.println("ENTER NEW EMAIL: ");
             String newEmail;
@@ -102,7 +103,6 @@ public class ViewMyProfile {
                     System.out.println(RED+"Invalid email, try again !!!"+RESET);
                 }
             }
-
             User newUser = new User(currentUser.getId(), newName, newEmail, currentUser.getPassword());
             userController.editUser(userName,newUser);
             System.out.println(newUser);
@@ -110,7 +110,6 @@ public class ViewMyProfile {
             userController.displayDataUser();
         }
     }
-
 
     private void formDetailProfile() {
         System.out.print(GREEN+"DETAIL PROFILE :     ");

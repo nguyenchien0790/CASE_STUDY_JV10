@@ -20,6 +20,7 @@ public class ViewRoleAdmin {
         System.out.println("|                     3. COUNTRY MANAGE                  |");
         System.out.println("|                     4. USER MANAGER                    |");
         System.out.println("|                     5. MY PROFILE                      |");
+        System.out.println("|                     6. SHOW USER LIST                  |");
         System.out.println("|                     0. Log out                         |");
         System.out.println("'--------------------------------------------------------'\n");
         switch (Config.getValidInteger()) {
@@ -37,6 +38,9 @@ public class ViewRoleAdmin {
                 break;
             case 5:
                 new ViewMyProfile().menuMyProfileAdmin();
+                break;
+            case 6:
+                new ViewMyProfile().formShowListUser();
                 break;
             case 0:
                 userController.logout();

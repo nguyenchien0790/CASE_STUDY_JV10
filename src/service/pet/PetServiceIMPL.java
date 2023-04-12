@@ -5,6 +5,8 @@ import config.Config;
 import model.pet.Pet;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class PetServiceIMPL implements IPetService {
@@ -75,5 +77,18 @@ public class PetServiceIMPL implements IPetService {
             }
         }
         return null;
+    }
+
+    @Override
+    public void sortByPrice() {
+        Collections.sort(petList, new Comparator<Pet>() {
+            @Override
+            public int compare(Pet o1, Pet o2) {
+                if (o1.getPrice() > o2.getPrice()){
+                    return -1;
+                }
+                return 1;
+            }
+        });
     }
 }

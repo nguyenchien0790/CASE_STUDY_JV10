@@ -1,7 +1,6 @@
 package cotroller.pet;
 
 import model.pet.Pet;
-import model.petcategory.Category;
 import service.category.CategoryServiceIMPL;
 import service.category.ICategoryService;
 import service.country.CountryServiceIMPL;
@@ -39,5 +38,14 @@ public class PetController {
     public void updatePet(Pet pet){
         petService.save(pet);
     }
+    public void sortByPrice(){
+        petService.sortByPrice();
+    }
+    public void editPetCart(int id, Pet newProduct2) {
+        Pet product2 = petService.findById(id);
+        product2.setAmount(newProduct2.getAmount());
+        petService.save(product2);
+    }
+
 
 }

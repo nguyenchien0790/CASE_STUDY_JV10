@@ -13,7 +13,7 @@ public class ViewRolePm {
     User currentUser = userController.getCurrentUser();
     public void menu(){
         System.out.println(".--------------------------------------------------------.");
-        System.out.println("| WELCOME PM : "+ currentUser.getName()+"                                  |");
+        System.out.println("| WELCOME PM : "+ currentUser.getName()+"                                        |");
         System.out.println("|--------------------------------------------------------|");
         System.out.println("|                     1. PET MANAGER                     |");
         System.out.println("|                     2. CATEGORY MANAGE                 |");

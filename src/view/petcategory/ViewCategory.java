@@ -94,7 +94,6 @@ public class ViewCategory {
         System.out.println(" ");
     }
 
-
     public void updateCategory() {
         showListCategory();
         System.out.println(".--------------------------------------------------------.");
@@ -122,9 +121,7 @@ public class ViewCategory {
                 System.out.print("|    ");
             }
         }
-
         System.out.println("'--------------------------------------------------------'\n");
-
         categoryController.updateCategory(new Category(idEdit, name));
         System.out.println(".--------------------------------------------------------.");
         System.out.println(GREEN + "|    Edit successfully                                   |" + RESET);
@@ -151,20 +148,16 @@ public class ViewCategory {
 
         System.out.println(GREEN + "Create Category in list success !!!" + RESET);
         System.out.println(" ");
-
     }
-
     public void showListCategory() {
         System.out.println(GREEN+"                      CATEGORY LIST                       ");
         System.out.println(".--------------------------------------------------------.");
         System.out.println("|"+WHITE+"       ID       |               NAME                    "+GREEN+"|");
         System.out.println("|--------------------------------------------------------|");
-
         for (Category category : categoryList) {
             System.out.printf("|       %-9d|              %-25s|\n", category.getId(), category.getCategoryName());
         }
         System.out.println("'--------------------------------------------------------'"+RESET);
         System.out.println(" ");
-
     }
 }
