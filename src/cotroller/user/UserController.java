@@ -66,6 +66,10 @@ public class UserController {
         userList.remove(0);
         return userList;
     }
+    public List<User> showListUser(){
+        List<User> userList = new ArrayList<>(userService.findAll());
+        return userList;
+    }
 
     public ResponseMessenger deleteUser(int id) {
         if (userService.findById(id) == null || id == 0) {
@@ -118,4 +122,10 @@ public class UserController {
     }
 
 
+    public void editUser(User user,int id) {
+        User user1 = userService.findById(id);
+        user1.setName(user.getName());
+        user1.setEmail(user.getEmail());
+        userService.save(user1);
+    }
 }

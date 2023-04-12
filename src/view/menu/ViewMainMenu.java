@@ -18,21 +18,23 @@ import static config.Color.*;
 public class ViewMainMenu {
     UserController userController = new UserController();
     public void menu(){
-        System.out.println(".-----------------------------------------------------------.");
-        System.out.println("|   ღ ღ (¯`◕‿◕´¯) ღ ღ   相棒 PET SHOP   ღ ღ (¯`◕‿◕´¯) ღ ღ   |");
-        System.out.println("|-----------------------------------------------------------|");
-        System.out.println("|                      1. REGISTER                          |");
-        System.out.println("|                      2. LOGIN                             |");
-        System.out.println("|                      3. LIST PETS                         |");
-        System.out.println("|                      4. LIST CATEGORY                     |");
-        System.out.println("|                      5. SEARCH PET                        |");
-        System.out.println("|                      6. SEARCH CATEGORY                   |");
-        System.out.println("|                      7. SORT PET BY PRICE                 |");
-        System.out.println("|                      0. EXIT ☠ ☠ ☠ ☠️               |");
-        System.out.println("'-----------------------------------------------------------'\n");
+        System.out.println("                                    .-------------------------------------------------------------------------------------------------.");
+        System.out.println("                                    |                 ღ ღ (¯`◕‿◕´¯) ღ ღ        相棒 PET SHOP        ღ ღ (¯`◕‿◕´¯) ღ ღ                 |");
+        System.out.println("                                    |-------------------------------------------------------------------------------------------------|");
+        System.out.println("                                    |                                                                                                 |");
+        System.out.println("                                    |                                           1. REGISTER                                           |");
+        System.out.println("                                    |                                           2. LOGIN                                              |");
+        System.out.println("                                    |                                           3. LIST PETS                                          |");
+        System.out.println("                                    |                                           4. LIST CATEGORY                                      |");
+        System.out.println("                                    |                                           5. SEARCH PET                                         |");
+        System.out.println("                                    |                                           6. SEARCH CATEGORY                                    |");
+        System.out.println("                                    |                                           7. SORT PET BY PRICE                                  |");
+        System.out.println("                                    |                                           0. EXIT ☠ ☠ ☠ ☠️                                |");
+        System.out.println("                                    |                                                               ️                                |");
+        System.out.println("                                    '-------------------------------------------------------------------------------------------------'\n");
         switch (Config.getValidInteger()){
             case 90:
-                formShowUser();
+                formShowListUser();
                 break;
             case 1:
                 new ViewMainMenu().fromRegister();
@@ -63,11 +65,19 @@ public class ViewMainMenu {
         menu();
     }
 
-    public void formShowUser() {
-        List<User> userList = userController.displayDataUser();
-        for (User user : userList) {
-            System.out.println(user);
+    public void formShowListUser() {
+        List<User> users = userController.showListUser();
+//        System.out.println(users); int id, String name, String username, String password, String email, Set<Role> roles
+        System.out.println(GREEN+"                                          LIST USER");
+        System.out.println(".-----------------------------------------------------------------------------------------------------------------------------.");
+        System.out.println("|   ID   |        NAME        |      USERNAME      |    PASSWORD    |          EMAIL          |   ROLE   |       STATUS       |");
+        System.out.println("|-----------------------------------------------------------------------------------------------------------------------------|");
+
+        for (User user : users) {
+            System.out.printf("|    %-4d|     %-15s|     %-15s|    %-12s|  %-23s|   %-7s|    %-16s|\n", user.getId(), user.getName(), user.getUsername(), user.getPassword(), user.getEmail(), user.getRoleNameOfUser(), (user.isStatus() ? "BLOCKED" : "NOT BLOCKED"));
         }
+        System.out.println("'-----------------------------------------------------------------------------------------------------------------------------'"+RESET);
+        System.out.println();
     }
 
     public void formLogin() {

@@ -19,7 +19,7 @@ public class ViewMyProfile {
         System.out.println("|                     MENU MY PROFILE                    |");
         System.out.println("|--------------------------------------------------------|");
         System.out.println("|                     1. DETAIL PROFILE                  |");
-        System.out.println("|                     2. CHANGE PROFILE USER             |");
+        System.out.println("|                     2. CHANGE PROFILE                  |");
         System.out.println("|                     3. CHANGE PASSWORD                 |");
         System.out.println("|                     0. BACK                            |");
         System.out.println("'--------------------------------------------------------'\n");
@@ -28,7 +28,7 @@ public class ViewMyProfile {
                 formDetailProfile();
                 break;
             case 2:
-                formChangeAllProfile();
+                formChangeMyProfile();
                 break;
             case 3:
                 formChangePassword();
@@ -46,7 +46,7 @@ public class ViewMyProfile {
         System.out.println("|                     MENU MY PROFILE                    |");
         System.out.println("|--------------------------------------------------------|");
         System.out.println("|                     1. DETAIL PROFILE                  |");
-        System.out.println("|                     2. CHANGE MY PROFILE               |");
+        System.out.println("|                     2. CHANGE PROFILE                  |");
         System.out.println("|                     3. CHANGE PASSWORD                 |");
         System.out.println("|                     0. BACK                            |");
         System.out.println("'--------------------------------------------------------'\n");
@@ -95,7 +95,7 @@ public class ViewMyProfile {
         }
 
         User user = new User(currentUser.getId(),newName,newEmail, currentUser.getPassword());
-        userController.editUser(user);
+        userController.editUser(user,currentUser.getId());
     }
 
     public void formChangeAllProfile() {
@@ -201,7 +201,7 @@ public class ViewMyProfile {
 
     public void formShowListUser() {
         List<User> users = userController.displayDataUser();
-//        System.out.println(users);
+//        System.out.println(users); int id, String name, String username, String password, String email, Set<Role> roles
         System.out.println(GREEN+"                                          LIST USER");
         System.out.println(".------------------------------------------------------------------------------------------------.");
         System.out.println("|      ID      |            USERNAME             |          ROLE          |        STATUS        |");

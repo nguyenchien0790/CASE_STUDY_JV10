@@ -33,7 +33,14 @@ public class UserServiceIMPL implements IUserService {
 
     @Override
     public void save(User user) {
-        userList.add(user);
+        User id = findById(user.getId());
+        if (id == null){
+            userList.add(user);
+        }else {
+            User user1 = findById(user.getId());
+            user1.setName(user.getName());
+            user1.setEmail(user.getEmail());
+        }
         updateData();
     }
 
