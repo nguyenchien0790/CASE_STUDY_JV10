@@ -80,11 +80,22 @@ public class PetServiceIMPL implements IPetService {
     }
 
     @Override
-    public void sortByPrice() {
+    public void sortPetByPrice() {
         Collections.sort(petList, new Comparator<Pet>() {
             @Override
             public int compare(Pet o1, Pet o2) {
                 if (o1.getPrice() > o2.getPrice()){
+                    return -1;
+                }
+                return 1;
+            }
+        });
+    }
+    public void sortPetById() {
+        Collections.sort(petList, new Comparator<Pet>() {
+            @Override
+            public int compare(Pet o1, Pet o2) {
+                if (o1.getId() < o2.getId()){
                     return -1;
                 }
                 return 1;

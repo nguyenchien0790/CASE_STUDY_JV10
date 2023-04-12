@@ -39,7 +39,7 @@ public class PetController {
         petService.save(pet);
     }
     public void sortByPrice(){
-        petService.sortByPrice();
+        petService.sortPetByPrice();
     }
     public void editPetCart(int id, Pet newProduct2) {
         Pet product2 = petService.findById(id);

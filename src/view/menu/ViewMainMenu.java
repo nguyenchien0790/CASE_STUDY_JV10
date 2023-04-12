@@ -6,6 +6,7 @@ import dto.request.SignInDTO;
 import dto.request.SignUpDTO;
 import dto.response.ResponseMessenger;
 import model.account.User;
+import service.pet.PetServiceIMPL;
 import view.acc.ViewHome;
 import view.pet.ViewPet;
 import view.petcategory.ViewCategory;
@@ -18,7 +19,7 @@ public class ViewMainMenu {
     UserController userController = new UserController();
     public void menu(){
         System.out.println(".-----------------------------------------------------------.");
-        System.out.println("|    ღ ღ(¯`◕‿◕´¯) ღ ღ   MOMO PET SHOP   ღ ღ(¯`◕‿◕´¯)ღ ღ    |");
+        System.out.println("|   ღ ღ (¯`◕‿◕´¯) ღ ღ   相棒 PET SHOP   ღ ღ (¯`◕‿◕´¯) ღ ღ   |");
         System.out.println("|-----------------------------------------------------------|");
         System.out.println("|                      1. REGISTER                          |");
         System.out.println("|                      2. LOGIN                             |");
@@ -52,7 +53,8 @@ public class ViewMainMenu {
                 new ViewCategory().searchCategory();
                 break;
             case 7:
-                new ViewPet().sortPet();
+                new ViewPet().sortPetByPrice();
+                new PetServiceIMPL().sortPetById();
                 break;
 
             case 0:
@@ -92,7 +94,6 @@ public class ViewMainMenu {
                 new ViewHome().menuLogin();
         }
     }
-
     public void fromRegister() {
         System.out.println("          REGISTER");
         //id

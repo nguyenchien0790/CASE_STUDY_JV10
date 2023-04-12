@@ -1,8 +1,5 @@
 package model.account;
 
-import model.account.Role;
-import model.account.RoleName;
-
 import java.io.Serializable;
 import java.util.Set;
 
@@ -104,8 +101,8 @@ public class User implements Serializable {
     @Override
     public String toString() {
         return  "    ID = " + id + "\n" +
-                "Name = " + name  + "             Username = " + username  +"\n"+
-                "Password = " + password + "         Email = " + email +"\n"+
-                "Status = " + (status ? "BLOCKED" : "NOT BLOCKED") + "     Roles = " + roles +"\n";
+                "Name = " + name  + "                 Username = " + username  +"\n"+
+                "Password = " + password + "             Email = " + email +"\n"+
+                "Status = " + (status ? "BLOCKED" : "NOT BLOCKED") + "        Roles = " + roles +"\n";
     }
 }

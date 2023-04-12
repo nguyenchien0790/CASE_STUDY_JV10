@@ -26,7 +26,7 @@ public class ViewPet {
         System.out.println("|                       PETS MANAGER                     |");
         System.out.println("|--------------------------------------------------------|");
         System.out.println("|                     1. SHOW LIST PETS                  |");
-        System.out.println("|                     2. ADD PET                x        |");
+        System.out.println("|                     2. ADD PET                         |");
         System.out.println("|                     3. UPDATE PET                      |");
         System.out.println("|                     4. DELETE PET                      |");
         System.out.println("|                     5. SEARCH PET                      |");
@@ -316,14 +316,9 @@ public class ViewPet {
 
     }
 
-    public void sortPet() {
+    public void sortPetByPrice() {
         petController.sortByPrice();
         System.out.println("LIST PET SORT BY PRICE");
-        System.out.println(GREEN+".-------------------------------------------------------------------------------------------------------------------------------------------------------------.");
-        System.out.println("|"+WHITE+"      ID      |             NAME                |          COLOR         |       CATEGORY       |     PRICE(VND)    |    AMOUNT    |         COUNTRY         "+GREEN+"|");
-        System.out.println("|-------------------------------------------------------------------------------------------------------------------------------------------------------------|");
-        System.out.println(petController.showPetList());
-        System.out.println("'-------------------------------------------------------------------------------------------------------------------------------------------------------------'\n" + RESET);
-
+        showListPet();
     }
 }

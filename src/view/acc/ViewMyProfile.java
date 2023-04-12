@@ -5,6 +5,7 @@ import config.Config;
 import cotroller.user.UserController;
 import dto.response.ResponseMessenger;
 import model.account.User;
+import view.menu.ViewMainMenu;
 
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class ViewMyProfile {
         System.out.println("|                     MENU MY PROFILE                    |");
         System.out.println("|--------------------------------------------------------|");
         System.out.println("|                     1. DETAIL PROFILE                  |");
-        System.out.println("|                     2. CHANGE PROFILE USER      X      |");
+        System.out.println("|                     2. CHANGE PROFILE USER             |");
         System.out.println("|                     3. CHANGE PASSWORD                 |");
         System.out.println("|                     0. BACK                            |");
         System.out.println("'--------------------------------------------------------'\n");
@@ -45,7 +46,7 @@ public class ViewMyProfile {
         System.out.println("|                     MENU MY PROFILE                    |");
         System.out.println("|--------------------------------------------------------|");
         System.out.println("|                     1. DETAIL PROFILE                  |");
-        System.out.println("|                     2. CHANGE MY PROFILE           X   |");
+        System.out.println("|                     2. CHANGE MY PROFILE               |");
         System.out.println("|                     3. CHANGE PASSWORD                 |");
         System.out.println("|                     0. BACK                            |");
         System.out.println("'--------------------------------------------------------'\n");
@@ -68,12 +69,38 @@ public class ViewMyProfile {
     }
 
     private void formChangeMyProfile() {
+        //name
+        System.out.println("Old name: "+currentUser.getName());
+        System.out.println("Enter new name: ");
+        String newName;
+        while (true){
+            newName= Config.scanner().nextLine();
+            if (newName.matches("[A-Z][a-zA-Z]{1,50}")){
+                break;
+            }else {
+                System.out.println(RED+"Invalid name, try again !!!"+RESET);
+            }
+        }
+        //gmail
+        System.out.println("Old mail: " + currentUser.getEmail());
+        System.out.println("Enter new mail: ");
+        String newEmail;
+        while (true){
+            newEmail = Config.scanner().nextLine();
+            if (newEmail.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")){
+                break;
+            }else {
+                System.out.println(RED+"Invalid email, try again !!!"+RESET);
+            }
+        }
 
-
+        User user = new User(currentUser.getId(),newName,newEmail, currentUser.getPassword());
+        userController.editUser(user);
     }
 
     public void formChangeAllProfile() {
-        System.out.println("ENTER USERNAME TO CHANGE PROFILE: ");
+        formShowListUser();
+        System.out.println("Enter ID of username to change profile: ");
         String userName = Config.scanner().nextLine();
         if (userController.detailUser(userName).equals(currentUser.getUsername())){
             System.out.println(RED+"USERNAME IS NOT MATCH"+RESET);
@@ -213,8 +240,10 @@ public class ViewMyProfile {
                     System.out.println(RED+"Old password does not matches!"+RESET);
                     break;
                 case "success":
-                    System.out.println(GREEN+"Change password successfully!"+RESET);
+                    System.out.println(GREEN+"Change password successfully. \nPlease, login repeat !\n"+RESET);
                     userController.logout();
+                    new ViewMainMenu().menu();
+                    return;
             }
         }
         System.out.println();
