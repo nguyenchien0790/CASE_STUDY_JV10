@@ -84,7 +84,7 @@ public class PetServiceIMPL implements IPetService {
         Collections.sort(petList, new Comparator<Pet>() {
             @Override
             public int compare(Pet o1, Pet o2) {
-                if (o1.getPrice() > o2.getPrice()){
+                if (o1.getPrice() < o2.getPrice()){
                     return -1;
                 }
                 return 1;

@@ -145,7 +145,7 @@ public class ViewPet {
         //category
         System.out.println("Enter number to choose CATEGORY:");
         for (int i = 0; i < CategoryServiceIMPL.categoryList.size(); i++) {
-            System.out.println(i + 1 + ": " + CategoryServiceIMPL.categoryList.get(i).toString());
+            System.out.println(CategoryServiceIMPL.categoryList.get(i).toString());
 
         }
         System.out.println("Input Id Category' Pet: ");
@@ -187,7 +187,7 @@ public class ViewPet {
         // country
         System.out.println("Enter number to choose COUNTRY:");
         for (int i = 0; i < CountryServiceIMPL.countryList.size(); i++) {
-            System.out.println(i + 1 + ": " + CountryServiceIMPL.countryList.get(i).toString());
+            System.out.println(CountryServiceIMPL.countryList.get(i).toString());
         }
         System.out.println("Input Id country' pet: ");
         int idCountry;
